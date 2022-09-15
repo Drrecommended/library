@@ -12,25 +12,62 @@ class Book {
 }
 
 Book.prototype.markAsRead = function () {
-  console.log(this)
+  if (!this.hasRead) {
+    this.hasRead = true
+  } else {
+    this.hasRead = false
+  }
 }
 
+//collect data from the form
 const addBookToLibrary = (event) => {
   event.preventDefault()
   const bookTitle = document.getElementById('book-title').value
   const bookAuthor = document.getElementById('book-author').value
   const bookPages = document.getElementById('book-pages').value
   const hasRead = document.getElementById('has-read').checked
+  //push the new book object into myLibrary
   const newBook = new Book(bookTitle, bookAuthor, bookPages, hasRead)
   myLibrary.push(newBook)
   displayBooks()
 }
 
+//index is passed in from the displayBooks function below
 const throwBookAway = (index) => {
   for (let book in myLibrary) {
     if (book == index) {
       myLibrary.splice(index, 1)
-      displayBooks()
+    }
+  }
+  displayBooks()
+}
+
+//for each read button attach a event handler
+const attachReadHandler = () => {
+  const readBtns = document.querySelectorAll('.read-btn')
+  readBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      changeReadStatus(e.target)
+    })
+  })
+}
+
+//from the event handler above check the read status
+const changeReadStatus = (target) => {
+  console.log(target)
+  for (let bookIndex in myLibrary) {
+    //if myLibrary books index matches the target index access the book objects prototype
+    if (bookIndex == target.dataset.index) {
+      myLibrary[bookIndex].markAsRead()
+    }
+    //if my libray book = true then my target textContent = read
+    if (myLibrary[bookIndex].hasRead && bookIndex == target.dataset.index) {
+      console.log('reading', target)
+      target.textContent = 'read'
+    }
+    if (!myLibrary[bookIndex].hasRead && bookIndex == target.dataset.index) {
+      console.log('not reading')
+      target.textContent = 'not read'
     }
   }
 }
@@ -50,12 +87,13 @@ const displayBooks = () => {
             <hr>
             <p>By: <em>${book.author}</em></p>
             <p>${book.pages}</p>
-            <button class="read-button">${
-              book.hasRead ? 'reading' : 'not reading'
-            }</button>
+            <button class="read-btn" data-index=${index}>${
+          book.hasRead ? 'reading' : 'not reading'
+        }</button>
           </li>`
     )
     .join('')
-}sadfs
+    attachReadHandler()
+}
 
 bookForm.addEventListener('submit', addBookToLibrary)
