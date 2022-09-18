@@ -5,21 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Tracker</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="form-container">
+    <div class="intro">
+      <h1>BOOK CLUB</h1>
+      <p class="rule">first rule of book club is...</p>
+    </div>
+
+    <div class="container form-container">
       <form id="book-form">
-        <input type="text" name="book title" id="book-title"  />
-        <input type="text" name="book author" id="book-author"  />
-        <input type="text" name="book pages" id="book-pages"  />
+        <label for="book-title">TITLE:</label><br />
+        <input type="text" name="book title" id="book-title" /><br />
+        <label for="book-author">AUTHOR:</label><br />
+        <input type="text" name="book author" id="book-author" /><br />
+        <label for="book-pages">PAGES READ:</label><br />
+        <input type="text" name="book pages" id="book-pages" /><br />
+        <label for="has-read">HAVE YOU READ?:</label><br />
         <input type="checkbox" name="has read" id="has-read" />
-        <input type="submit" value="NEW BOOK">
+        <input class="btn" type="submit" value="NEW BOOK" />
       </form>
     </div>
 
-    <ul class="books container" id="book-cards"></ul>
+    <ul class="books grid" id="book-cards"></ul>
   </body>
 </html>
