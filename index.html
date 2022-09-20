@@ -19,19 +19,15 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="intro">
-      <h1>BOOK CLUB</h1>
-      <p class="rule">first rule of book club is...</p>
-    </div>
-
+    <h1>BOOK CLUB</h1>
     <div class="container form-container">
       <form id="book-form">
         <label for="book-title">TITLE:</label><br />
-        <input type="text" name="book title" id="book-title" /><br />
+        <input type="text" name="book title" id="book-title" required /><br />
         <label for="book-author">AUTHOR:</label><br />
-        <input type="text" name="book author" id="book-author" /><br />
+        <input type="text" name="book author" id="book-author" required /><br />
         <label for="book-pages">PAGES READ:</label><br />
-        <input type="text" name="book pages" id="book-pages" /><br />
+        <input type="number" name="book pages" id="book-pages" required /><br />
         <label for="has-read">HAVE YOU READ?:</label><br />
         <input type="checkbox" name="has read" id="has-read" />
         <input class="btn" type="submit" value="NEW BOOK" />

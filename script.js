@@ -1,79 +1,80 @@
-const bookForm = document.getElementById('book-form')
+const bookForm = document.getElementById("book-form");
 
-let myLibrary = []
+let myLibrary = [];
 
 class Book {
   constructor(title, author, pages, hasRead) {
-    ;(this.title = title),
+    (this.title = title),
       (this.author = author),
       (this.pages = pages),
-      (this.hasRead = hasRead)
+      (this.hasRead = hasRead);
   }
 }
 
 Book.prototype.markAsRead = function () {
   if (!this.hasRead) {
-    this.hasRead = true
+    this.hasRead = true;
   } else {
-    this.hasRead = false
+    this.hasRead = false;
   }
-}
+};
 
 //collect data from the form
 const addBookToLibrary = (event) => {
-  event.preventDefault()
-  const bookTitle = document.getElementById('book-title').value
-  const bookAuthor = document.getElementById('book-author').value
-  const bookPages = document.getElementById('book-pages').value
-  const hasRead = document.getElementById('has-read').checked
+  event.preventDefault();
+  const bookTitle = document.getElementById("book-title").value;
+  const bookAuthor = document.getElementById("book-author").value;
+  const bookPages = document.getElementById("book-pages").value;
+  const hasRead = document.getElementById("has-read").checked;
   //push the new book object into myLibrary
-  const newBook = new Book(bookTitle, bookAuthor, bookPages, hasRead)
-  myLibrary.push(newBook)
-  displayBooks()
-}
+  const newBook = new Book(bookTitle, bookAuthor, bookPages, hasRead);
+  myLibrary.push(newBook);
+  displayBooks();
+  bookForm.reset()
+};
+
 
 //index is passed in from the displayBooks function below
 const throwBookAway = (index) => {
   for (let book in myLibrary) {
     if (book == index) {
-      myLibrary.splice(index, 1)
+      myLibrary.splice(index, 1);
     }
   }
-  displayBooks()
-}
+  displayBooks();
+};
 
 //for each read button attach a event handler
 const attachReadHandler = () => {
-  const readBtns = document.querySelectorAll('.read-btn')
+  const readBtns = document.querySelectorAll(".read-btn");
   readBtns.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      changeReadStatus(e.target)
-    })
-  })
-}
+    btn.addEventListener("click", (e) => {
+      changeReadStatus(e.target);
+    });
+  });
+};
 
 //from the event handler above check the read status
 const changeReadStatus = (target) => {
-  console.log(target)
   for (let bookIndex in myLibrary) {
     //if myLibrary books index matches the target index access the book objects prototype
     if (bookIndex == target.dataset.index) {
-      myLibrary[bookIndex].markAsRead()
+      myLibrary[bookIndex].markAsRead();
     }
     //if my libray book = true then my target textContent = read
     if (myLibrary[bookIndex].hasRead && bookIndex == target.dataset.index) {
-      console.log('reading', target)
-      target.textContent = 'read'
+      console.log("reading", target);
+      target.textContent = "reading";
     }
     if (!myLibrary[bookIndex].hasRead && bookIndex == target.dataset.index) {
-      console.log('not reading')
-      target.textContent = 'not read'
+      console.log("not reading");
+      target.textContent = "not reading";
     }
   }
-}
+};
 
 const displayBooks = () => {
-  const bookShelf = document.getElementById('book-cards')
+  const bookShelf = document.getElementById("book-cards");
   bookShelf.innerHTML = myLibrary
     .map(
       (book, index) =>
@@ -88,12 +89,12 @@ const displayBooks = () => {
             <p>By: <em>${book.author}</em></p>
             <p>${book.pages}</p>
             <button class="read-btn" data-index=${index}>${
-          book.hasRead ? 'reading' : 'not reading'
+          book.hasRead ? "reading" : "not reading"
         }</button>
           </li>`
     )
-    .join('')
-    attachReadHandler()
-}
+    .join("");
+  attachReadHandler();
+};
 
-bookForm.addEventListener('submit', addBookToLibrary)
+bookForm.addEventListener("submit", addBookToLibrary);
