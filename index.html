@@ -17,25 +17,31 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <h1>BOOK CLUB</h1>
+    <h1>BOOK SHELF</h1>
     <form id="book-form">
       <div class="title">
         <label for="book-title">TITLE:</label><br />
-        <input type="text" name="book title" id="book-title" required />
+        <input type="text" name="book title" id="book-title" />
       </div>
       <div class="author">
         <label for="book-author">AUTHOR:</label><br />
-        <input type="text" name="book author" id="book-author" required />
+        <input type="text" name="book author" id="book-author" />
       </div>
       <div class="pages">
         <label for="book-pages">PAGES READ:</label><br />
-        <input type="number" name="book pages" id="book-pages" required />
+        <input type="number" name="book pages" id="book-pages" />
       </div>
       <div class="read">
-        <label for="has-read">HAVE YOU READ?:</label><br />
-        <input type="checkbox" name="has read" id="has-read" />
+        <label class="read-container" for="has-read"
+          >HAVE YOU READ?:<br />
+          <input type="checkbox" name="has read" id="has-read" />
+          <span class="checkmark"></span>
+        </label>
       </div>
-      <input class="btn" type="submit" value="ADD BOOK" />
+      <br />
+      <div class="submit">
+        <input class="btn" type="submit" value="ADD BOOK" />
+      </div>
     </form>
     <ul class="books grid" id="book-cards"></ul>
   </body>
