@@ -316,8 +316,9 @@ button {
 }
 
 .read-container:hover input ~ .checkmark,
-input:hover {
-  box-shadow: 0px 0px 5px var(--hightlight-color);
+input:hover, .card:hover {
+  transition: 0.3s ease-in;
+  box-shadow: 0px 0px 7px var(--hightlight-color);
 }
 
 .read-container input:checked ~ .checkmark {
@@ -381,7 +382,7 @@ select:-webkit-autofill:focus {
 }
 
 
-.card-shade:after {
+/* .card-shade:after {
   content: " ";
   position: absolute;
   top: 0;
@@ -393,7 +394,9 @@ select:-webkit-autofill:focus {
   background-color: var(--hightlight-color);
   z-index: 1;
   overflow: hidden;
-}
+} */
+
+
 
 
 

@@ -56,19 +56,19 @@ const attachReadHandler = () => {
 //from the event handler above check the read status
 const changeReadStatus = (target) => {
   for (let bookIndex in myLibrary) {
-    if (!myLibrary[bookIndex].hasRead && bookIndex == target.dataset.index) {
-      target.textContent = 'FINISHED'
-      target.classList.add('card-shade')
+    if (bookIndex == target.dataset.index) {
+      if (!myLibrary[bookIndex].hasRead) {
+        target.textContent = 'FINISHED'
+        target.classList.add('card-shade')
 
-      myLibrary[bookIndex].markReadStatus()
-    } else if (
-      myLibrary[bookIndex].hasRead &&
-      bookIndex == target.dataset.index
-    ) {
-      target.textContent = 'READING'
-      target.classList.remove('card-shade')
+        myLibrary[bookIndex].markReadStatus()
+      }
+      if (myLibrary[bookIndex].hasRead) {
+        target.textContent = 'READING'
+        target.classList.remove('card-shade')
 
-      myLibrary[bookIndex].markReadStatus()
+        myLibrary[bookIndex].markReadStatus()
+      }
     }
   }
 }
