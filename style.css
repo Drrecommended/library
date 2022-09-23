@@ -375,3 +375,25 @@ select:-webkit-autofill:focus {
   transition: 0.3s ease-in;
   box-shadow: none;
 }
+
+.trash-can:hover {
+  border: 2px solid red;
+}
+
+
+.card-shade:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 10px;
+  opacity: 30%;
+  background-color: var(--hightlight-color);
+  z-index: 1;
+  overflow: hidden;
+}
+
+
+

@@ -13,10 +13,8 @@ class Book {
 
 Book.prototype.markReadStatus = function () {
   if (!this.hasRead) {
-    console.log(this.hasRead)
     this.hasRead = true
   } else if (this.hasRead) {
-    console.log(this.hasRead)
     this.hasRead = false
   }
 }
@@ -60,12 +58,16 @@ const changeReadStatus = (target) => {
   for (let bookIndex in myLibrary) {
     if (!myLibrary[bookIndex].hasRead && bookIndex == target.dataset.index) {
       target.textContent = 'FINISHED'
+      target.classList.add('card-shade')
+
       myLibrary[bookIndex].markReadStatus()
     } else if (
       myLibrary[bookIndex].hasRead &&
       bookIndex == target.dataset.index
     ) {
       target.textContent = 'READING'
+      target.classList.remove('card-shade')
+
       myLibrary[bookIndex].markReadStatus()
     }
   }
