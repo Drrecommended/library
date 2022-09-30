@@ -62,8 +62,7 @@ const changeReadStatus = (target) => {
         target.classList.add('card-shade')
 
         myLibrary[bookIndex].markReadStatus()
-      }
-      if (myLibrary[bookIndex].hasRead) {
+      } else {
         target.textContent = 'READING'
         target.classList.remove('card-shade')
 
