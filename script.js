@@ -1,9 +1,4 @@
-const bookForm = document.getElementById('book-form')
-
 let myLibrary = []
-
-
-
 
 class Book {
   constructor(title, author, pages, hasRead) {
@@ -22,6 +17,8 @@ class Book {
   }
 }
 
+console.log()
+
 //collect data from the form
 const addBookToLibrary = (event) => {
   event.preventDefault()
@@ -33,7 +30,7 @@ const addBookToLibrary = (event) => {
   const newBook = new Book(bookTitle, bookAuthor, bookPages, hasRead)
   myLibrary.push(newBook)
   displayBooks()
-  bookForm.reset()
+  form.bookForm.reset()
 }
 
 //index is passed in from the displayBooks function below
@@ -99,4 +96,9 @@ const displayBooks = () => {
   attachReadHandler()
 }
 
-bookForm.addEventListener('submit', addBookToLibrary)
+//Form module
+const form = (() => {
+  const bookForm = document.getElementById('book-form')
+  bookForm.addEventListener('submit', addBookToLibrary)
+  return { bookForm }
+})()
