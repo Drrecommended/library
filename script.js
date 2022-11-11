@@ -2,6 +2,9 @@ const bookForm = document.getElementById('book-form')
 
 let myLibrary = []
 
+
+
+
 class Book {
   constructor(title, author, pages, hasRead) {
     ;(this.title = title),
@@ -9,13 +12,13 @@ class Book {
       (this.pages = pages),
       (this.hasRead = hasRead)
   }
-}
 
-Book.prototype.markReadStatus = function () {
-  if (!this.hasRead) {
-    this.hasRead = true
-  } else if (this.hasRead) {
-    this.hasRead = false
+  markReadStatus = () => {
+    if (!this.hasRead) {
+      this.hasRead = true
+    } else if (this.hasRead) {
+      this.hasRead = false
+    }
   }
 }
 
