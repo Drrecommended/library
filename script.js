@@ -1,5 +1,3 @@
-const bookForm = document.getElementById('book-form')
-
 let myLibrary = []
 
 class Book {
@@ -9,30 +7,18 @@ class Book {
       (this.pages = pages),
       (this.hasRead = hasRead)
   }
-}
 
-Book.prototype.markReadStatus = function () {
-  if (!this.hasRead) {
-    this.hasRead = true
-  } else if (this.hasRead) {
-    this.hasRead = false
+  markReadStatus = () => {
+    if (!this.hasRead) {
+      this.hasRead = true
+    } else if (this.hasRead) {
+      this.hasRead = false
+    }
   }
 }
 
-//collect data from the form
-const addBookToLibrary = (event) => {
-  event.preventDefault()
-  const bookTitle = document.getElementById('book-title').value
-  const bookAuthor = document.getElementById('book-author').value
-  const bookPages = document.getElementById('book-pages').value
-  const hasRead = document.getElementById('has-read').checked
-  //push the new book object into myLibrary
-  const newBook = new Book(bookTitle, bookAuthor, bookPages, hasRead)
-  myLibrary.push(newBook)
-  displayBooks()
-  bookForm.reset()
-}
 
+console.log('test')
 //index is passed in from the displayBooks function below
 const throwBookAway = (index) => {
   for (let book in myLibrary) {
@@ -96,4 +82,24 @@ const displayBooks = () => {
   attachReadHandler()
 }
 
-bookForm.addEventListener('submit', addBookToLibrary)
+//Form module
+const form = (() => {
+  const bookForm = document.getElementById('book-form')
+
+  //collect data from the form
+  const addBookToLibrary = (event) => {
+    event.preventDefault()
+    const bookTitle = document.getElementById('book-title').value
+    const bookAuthor = document.getElementById('book-author').value
+    const bookPages = document.getElementById('book-pages').value
+    const hasRead = document.getElementById('has-read').checked
+    //push the new book object into myLibrary
+    const newBook = new Book(bookTitle, bookAuthor, bookPages, hasRead)
+    myLibrary.push(newBook)
+    displayBooks()
+    bookForm.reset()
+  }
+
+  bookForm.addEventListener('submit', addBookToLibrary)
+  return { bookForm }
+})()
