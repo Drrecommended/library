@@ -17,6 +17,8 @@ class Book {
   }
 }
 
+
+console.log('test')
 //index is passed in from the displayBooks function below
 const throwBookAway = (index) => {
   for (let book in myLibrary) {
